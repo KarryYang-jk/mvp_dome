@@ -1,6 +1,8 @@
 package com.example.app_object.mvp.model.api;
 
-import java.io.File;
+
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -39,7 +41,11 @@ public interface ApiService<T> {
     @POST
     Observable<ResponseBody> requestFormData(@Url String url);
 
-    //参数是键值对的post请求
+    //只有请求头的post请求
+    @POST
+    Observable<ResponseBody> requestFormData(@Url String url, @HeaderMap HashMap<String, T> headers);
+
+    //只有参数的post请求
     @POST
     @FormUrlEncoded
     Observable<ResponseBody> requestFormData(@Url String url, @FieldMap Map<String, T> params);
@@ -50,11 +56,13 @@ public interface ApiService<T> {
     Observable<ResponseBody> requestFormData(@Url String url, @HeaderMap Map<String, T> headers,
                                              @FieldMap Map<String, T> params);
 
+
     //参数是json串的post请求
     @POST
     Observable<ResponseBody> requestFormData(@Url String url, @Body RequestBody requestBody);
 
-    //参数是json串的post请求
+
+    //参数是json串 并且带请求头的post请求
     @POST
     Observable<ResponseBody> requestFormData(@Url String url, @HeaderMap Map<String, T> headers, @Body RequestBody requestBody);
 
@@ -84,7 +92,7 @@ public interface ApiService<T> {
     //多个文件+键值对 上传1
     @POST
     @Multipart
-    Observable<ResponseBody> uploadStrFiles(@Url String url, @Body RequestBody requestBody, @PartMap Map<String, T> filesMap);
+    Observable<ResponseBody> uploadStrFiles(@Url String url, @Body RequestBody body, @PartMap Map<String, T> filesMap);
 
     //多个文件+键值对 上传2
     @POST

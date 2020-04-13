@@ -66,7 +66,6 @@ public class HomeFragmet extends LazyFragment {
                 return R.layout.fragment_navigation;
             case 2:
                 return R.layout.fragment_tixi;
-
             case 3:
                 return R.layout.fragment_gongzhonghao;
         }
